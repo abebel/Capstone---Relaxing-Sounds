@@ -1,28 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlaySongs : MonoBehaviour
 {
-    public GameObject test;
-    public AudioSource source { get { return GetComponent<AudioSource>(); } }
+    public GameObject ButtonText;
+    public GameObject VolumeSlider;
+    public AudioSource Source { get { return GetComponent<AudioSource>(); } }
     public void PlayPauseSong()
     {
-        if (!source.isPlaying)
+        if (!Source.isPlaying)
         {
-            source.Play();
+            Source.Play();
+            VolumeSlider.SetActive(true);
+            ButtonText.SetActive(false);
         }
         else
         {
-            source.Pause();
+            Source.Pause();
+            VolumeSlider.SetActive(false);
+            ButtonText.SetActive(true);
         }
     }
     void Start()
     {
         gameObject.AddComponent<AudioSource>();
-        source.clip = source.clip;
-        source.playOnAwake = false;
-        source.loop = true;
+        Source.clip = Source.clip;
+        Source.playOnAwake = false;
+        Source.loop = true;
 
     }
 }

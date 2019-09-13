@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class PlaySongs : MonoBehaviour
 {
     public GameObject ButtonText;
+    public Button button;
+    public Sprite MusicOffImage;
+    public Sprite MusicOnImage;
     public GameObject VolumeSlider;
     public AudioSource Source { get { return GetComponent<AudioSource>(); } }
     public void PlayPauseSong()
@@ -15,12 +18,14 @@ public class PlaySongs : MonoBehaviour
             Source.Play();
             VolumeSlider.SetActive(true);
             ButtonText.SetActive(false);
+            button.GetComponent<Image>().sprite = MusicOnImage;
         }
         else
         {
             Source.Pause();
             VolumeSlider.SetActive(false);
             ButtonText.SetActive(true);
+            button.GetComponent<Image>().sprite = MusicOffImage;
         }
     }
     void Start()
